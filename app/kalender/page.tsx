@@ -196,7 +196,7 @@ export default function SmartStudyPage() {
           {/* Navigasi */}
           <nav className="space-y-1">
             {[
-              { name: "Dasbor", icon: LayoutDashboard },
+              { name: "Dasboard", icon: LayoutDashboard },
               { name: "Tugas", icon: BookOpen },
               { name: "Kalender", icon: Calendar },
               { name: "Pengingat", icon: Bell },
