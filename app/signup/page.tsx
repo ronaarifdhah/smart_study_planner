@@ -1,5 +1,6 @@
 "use client";
 
+import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 
 export default function SignUpPage() {
@@ -22,19 +23,19 @@ export default function SignUpPage() {
           color: "white",
         }}
       >
-        <h1
-          style={{
-            color: "#60A5FA",
-            fontSize: "55px",
-          }}
-        >
-          🎓 Smart Study Planner
-        </h1>
+        <div className="flex items-center gap-5 mb-8 pl-2">
+            <div className="w-15 h-15 bg-indigo-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-200">
+              <GraduationCap className="w-10 h-10" />
+            </div>
+            <div>
+              <h1 className="font-bold text-white leading-tight text-5xl">Smart Study Planner</h1>
+            </div>
+          </div>
 
         <h1
           style={{
             marginTop: "100px",
-            fontSize: "60px",
+            fontSize: "40px",
           }}
         >
           Start Your Journey ✨
