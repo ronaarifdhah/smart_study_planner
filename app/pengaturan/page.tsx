@@ -1,10 +1,25 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState, useRef } from "react";
-import { 
-  LayoutDashboard, BookOpen, Calendar, Target, BarChart3, 
-  Bell, Moon, Search, GraduationCap, Settings, User, Lock, 
-  BellRing, Paintbrush, LogOut, Camera, Sun
+import {
+  LayoutDashboard,
+  BookOpen,
+  Calendar,
+  Target,
+  BarChart3,
+  Bell,
+  Moon,
+  Search,
+  GraduationCap,
+  Settings,
+  User,
+  Lock,
+  BellRing,
+  Paintbrush,
+  LogOut,
+  Camera,
+  Sun,
 } from "lucide-react";
 
 export default function PengaturanPage() {
@@ -72,9 +87,22 @@ export default function PengaturanPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FD] text-slate-700 font-sans antialiased">
-      
       {/* ================= SIDEBAR KIRI ================= */}
-      <aside className="w-64 bg-white border-r border-slate-100 p-6 flex flex-col justify-between hidden md:flex shrink-0">
+      <aside
+          className="
+          w-64
+          bg-white
+          border-r
+          border-slate-100
+          p-6
+          flex
+          flex-col
+          justify-between
+          sticky
+          top-0
+          h-screen
+        "
+        >
         <div>
           {/* Logo */}
           <div className="flex items-center gap-3 mb-8 pl-2">
@@ -82,7 +110,9 @@ export default function PengaturanPage() {
               <GraduationCap className="w-5 h-5" />
             </div>
             <div>
-              <h1 className="font-bold text-slate-800 leading-tight text-sm">Smart Study</h1>
+              <h1 className="font-bold text-slate-800 leading-tight text-sm">
+                Smart Study
+              </h1>
               <p className="text-xs text-slate-400">Planner</p>
             </div>
           </div>
@@ -90,27 +120,29 @@ export default function PengaturanPage() {
           {/* Navigasi */}
           <nav className="space-y-1">
             {[
-              { name: "Dasbor", icon: LayoutDashboard },
-              { name: "Tugas", icon: BookOpen },
-              { name: "Kalender", icon: Calendar },
-              { name: "Pengingat", icon: Bell },
-              { name: "Pengaturan", icon: Settings },
+              { name: "Dasboard", icon: LayoutDashboard, href: "/dashboard" },
+              { name: "Tugas", icon: BookOpen, href: "/tugas" },
+              { name: "Kalender", icon: Calendar, href: "/kalender" },
+              { name: "Pengingat", icon: Bell, href: "/pengingat" },
+              { name: "Pengaturan", icon: Settings, href: "/pengaturan" },
             ].map((menu) => {
               const Icon = menu.icon;
               const isActive = activeMenu === menu.name;
               return (
-                <button
-                  key={menu.name}
-                  onClick={() => setActiveMenu(menu.name)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                    isActive 
-                      ? "bg-purple-50 text-purple-600 shadow-sm" 
-                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-800"
-                  }`}
-                >
-                  <Icon className={`w-4 h-4 ${isActive ? "text-purple-600" : "text-slate-400"}`} />
-                  {menu.name}
-                </button>
+                <Link key={menu.name} href={menu.href}>
+                  <div
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      isActive
+                        ? "bg-purple-50 text-purple-600 shadow-sm"
+                        : "text-slate-500 hover:bg-slate-50 hover:text-slate-800"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-4 h-4 ${isActive ? "text-purple-600" : "text-slate-400"}`}
+                    />
+                    {menu.name}
+                  </div>
+                </Link>
               );
             })}
           </nav>
@@ -119,7 +151,9 @@ export default function PengaturanPage() {
         {/* Tips Box */}
         <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
           <div className="flex items-center gap-2 mb-1">
-            <span className="text-purple-600 text-xs font-bold">💡 Tips Cerdas</span>
+            <span className="text-purple-600 text-xs font-bold">
+              💡 Tips Cerdas
+            </span>
           </div>
           <p className="text-xs text-slate-600 leading-relaxed">
             Coba teknik Pomodoro 25 menit untuk fokus maksimal hari ini.
@@ -129,7 +163,6 @@ export default function PengaturanPage() {
 
       {/* ================= AREA UTAMA (KONTEN) ================= */}
       <main className="flex-1 p-6 lg:p-8 max-w-4xl mx-auto w-full overflow-y-auto">
-        
         {/* Header Atas */}
         <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div className="relative w-full max-w-md">
@@ -142,9 +175,6 @@ export default function PengaturanPage() {
           </div>
 
           <div className="flex items-center gap-4 justify-end">
-            <button className="p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50">
-              <Moon className="w-4 h-4" />
-            </button>
             <div className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 cursor-pointer">
               <Bell className="w-4 h-4" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full"></span>
@@ -161,14 +191,17 @@ export default function PengaturanPage() {
             <Settings className="w-7 h-7" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Pengaturan</h2>
-            <p className="text-xs text-slate-400 mt-0.5">Kelola profil, keamanan, notifikasi, dan tampilan aplikasimu.</p>
+            <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
+              Pengaturan
+            </h2>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Kelola profil, keamanan, notifikasi, dan tampilan aplikasimu.
+            </p>
           </div>
         </div>
 
         {/* FORM KONTEN (SEKUENSIAL KE BAWAH) */}
         <div className="space-y-6">
-
           {/* 1. KARTU PROFIL PENGGUNA */}
           <section className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             <div className="flex items-start gap-3 mb-6">
@@ -176,8 +209,12 @@ export default function PengaturanPage() {
                 <User className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-800 leading-none">Profil Pengguna</h3>
-                <p className="text-xs text-slate-400 mt-1">Perbarui informasi akunmu.</p>
+                <h3 className="text-sm font-bold text-slate-800 leading-none">
+                  Profil Pengguna
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  Perbarui informasi akunmu.
+                </p>
               </div>
             </div>
 
@@ -186,9 +223,9 @@ export default function PengaturanPage() {
               <div className="flex items-center gap-4">
                 <div className="relative">
                   {avatarUrl ? (
-                    <img 
-                      src={avatarUrl} 
-                      alt="Avatar" 
+                    <img
+                      src={avatarUrl}
+                      alt="Avatar"
                       className="w-16 h-16 rounded-full object-cover border border-slate-200"
                     />
                   ) : (
@@ -197,8 +234,8 @@ export default function PengaturanPage() {
                     </div>
                   )}
                   {/* Tombol Input File tersembunyi */}
-                  <input 
-                    type="file" 
+                  <input
+                    type="file"
                     ref={fileInputRef}
                     onChange={handleAvatarChange}
                     accept="image/*"
@@ -214,15 +251,21 @@ export default function PengaturanPage() {
                   </button>
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-700">Foto Profil</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">PNG/JPG, maks 2MB.</p>
+                  <h4 className="text-xs font-bold text-slate-700">
+                    Foto Profil
+                  </h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    PNG/JPG, maks 2MB.
+                  </p>
                 </div>
               </div>
 
               {/* Grid Form Isian Nama & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">Nama Pengguna</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                    Nama Pengguna
+                  </label>
                   <input
                     type="text"
                     value={username}
@@ -231,7 +274,9 @@ export default function PengaturanPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">Email</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                    Email
+                  </label>
                   <input
                     type="email"
                     value={email}
@@ -252,7 +297,6 @@ export default function PengaturanPage() {
             </form>
           </section>
 
-
           {/* 2. KARTU KEAMANAN AKUN */}
           <section className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             <div className="flex items-start gap-3 mb-6">
@@ -260,15 +304,21 @@ export default function PengaturanPage() {
                 <Lock className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-800 leading-none">Keamanan Akun</h3>
-                <p className="text-xs text-slate-400 mt-1">Ubah kata sandi secara berkala untuk menjaga keamanan.</p>
+                <h3 className="text-sm font-bold text-slate-800 leading-none">
+                  Keamanan Akun
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  Ubah kata sandi secara berkala untuk menjaga keamanan.
+                </p>
               </div>
             </div>
 
             <form onSubmit={handleUbahPassword} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">Kata Sandi Saat Ini</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                    Kata Sandi Saat Ini
+                  </label>
                   <input
                     type="password"
                     value={currentPassword}
@@ -278,7 +328,9 @@ export default function PengaturanPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">Kata Sandi Baru</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                    Kata Sandi Baru
+                  </label>
                   <input
                     type="password"
                     value={newPassword}
@@ -288,7 +340,9 @@ export default function PengaturanPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">Konfirmasi Sandi</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                    Konfirmasi Sandi
+                  </label>
                   <input
                     type="password"
                     value={confirmPassword}
@@ -310,7 +364,6 @@ export default function PengaturanPage() {
             </form>
           </section>
 
-
           {/* 3. KARTU PENGATURAN NOTIFIKASI */}
           <section className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
             <div className="flex items-start gap-3 mb-6">
@@ -318,19 +371,26 @@ export default function PengaturanPage() {
                 <BellRing className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-800 leading-none">Pengaturan Notifikasi</h3>
-                <p className="text-xs text-slate-400 mt-1">Pilih notifikasi yang ingin kamu terima.</p>
+                <h3 className="text-sm font-bold text-slate-800 leading-none">
+                  Pengaturan Notifikasi
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  Pilih notifikasi yang ingin kamu terima.
+                </p>
               </div>
             </div>
 
             {/* List Baris Saklar */}
             <div className="divide-y divide-slate-50">
-              
               {/* Row 1 */}
               <div className="flex items-center justify-between py-4 first:pt-0">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800">Notifikasi Tugas</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Pemberitahuan saat ada tugas baru atau diperbarui.</p>
+                  <h4 className="text-xs font-bold text-slate-800">
+                    Notifikasi Tugas
+                  </h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Pemberitahuan saat ada tugas baru atau diperbarui.
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -344,8 +404,12 @@ export default function PengaturanPage() {
               {/* Row 2 */}
               <div className="flex items-center justify-between py-4">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800">Notifikasi Tenggat</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Ingatkan saya menjelang tenggat tugas.</p>
+                  <h4 className="text-xs font-bold text-slate-800">
+                    Notifikasi Tenggat
+                  </h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Ingatkan saya menjelang tenggat tugas.
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -359,8 +423,12 @@ export default function PengaturanPage() {
               {/* Row 3 */}
               <div className="flex items-center justify-between py-4 last:pb-0">
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800">Notifikasi Belajar</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Pengingat sesi belajar dan Pomodoro.</p>
+                  <h4 className="text-xs font-bold text-slate-800">
+                    Notifikasi Belajar
+                  </h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Pengingat sesi belajar dan Pomodoro.
+                  </p>
                 </div>
                 <button
                   type="button"
@@ -370,10 +438,8 @@ export default function PengaturanPage() {
                   <span className="w-4 h-4 bg-white rounded-full shadow-sm"></span>
                 </button>
               </div>
-
             </div>
           </section>
-
 
           {/* 4. KARTU TAMPILAN (TEMA) */}
           <section className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
@@ -382,21 +448,24 @@ export default function PengaturanPage() {
                 <Paintbrush className="w-4 h-4" />
               </div>
               <div>
-                <h3 className="text-sm font-bold text-slate-800 leading-none">Tampilan</h3>
-                <p className="text-xs text-slate-400 mt-1">Sesuaikan tema agar nyaman di mata.</p>
+                <h3 className="text-sm font-bold text-slate-800 leading-none">
+                  Tampilan
+                </h3>
+                <p className="text-xs text-slate-400 mt-1">
+                  Sesuaikan tema agar nyaman di mata.
+                </p>
               </div>
             </div>
 
             {/* Pilihan Mode Box */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              
               {/* Opsi Terang */}
               <button
                 type="button"
                 onClick={() => setThemeMode("terang")}
                 className={`p-4 rounded-2xl border text-left flex items-start gap-4 transition-all ${
-                  themeMode === "terang" 
-                    ? "border-purple-400 ring-2 ring-purple-100 bg-white" 
+                  themeMode === "terang"
+                    ? "border-purple-400 ring-2 ring-purple-100 bg-white"
                     : "border-slate-100 bg-[#FAFAFA] opacity-70"
                 }`}
               >
@@ -404,33 +473,16 @@ export default function PengaturanPage() {
                   <Sun className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800">Mode Terang</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Warna lembut & cerah.</p>
+                  <h4 className="text-xs font-bold text-slate-800">
+                    Mode Terang
+                  </h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">
+                    Warna lembut & cerah.
+                  </p>
                 </div>
               </button>
-
-              {/* Opsi Gelap */}
-              <button
-                type="button"
-                onClick={() => setThemeMode("gelap")}
-                className={`p-4 rounded-2xl border text-left flex items-start gap-4 transition-all ${
-                  themeMode === "gelap" 
-                    ? "border-purple-400 ring-2 ring-purple-100 bg-white" 
-                    : "border-slate-100 bg-[#FAFAFA] opacity-70"
-                }`}
-              >
-                <div className="p-2 bg-slate-900 rounded-xl text-slate-100 mt-0.5">
-                  <Moon className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-800">Mode Gelap</h4>
-                  <p className="text-[11px] text-slate-400 mt-0.5">Nyaman untuk malam hari.</p>
-                </div>
-              </button>
-
             </div>
           </section>
-
 
           {/* 5. BAGIAN BAR KELUAR AKUN (LOGOUT) */}
           <div className="bg-rose-50 border border-rose-100/60 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -439,8 +491,12 @@ export default function PengaturanPage() {
                 <LogOut className="w-4 h-4 transform rotate-180" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-rose-700 leading-none">Keluar dari akun</h4>
-                <p className="text-[11px] text-rose-400 mt-1">Kamu akan kembali ke halaman masuk dan sesi ini akan diakhiri.</p>
+                <h4 className="text-xs font-bold text-rose-700 leading-none">
+                  Keluar dari akun
+                </h4>
+                <p className="text-[11px] text-rose-400 mt-1">
+                  Kamu akan kembali ke halaman masuk dan sesi ini akan diakhiri.
+                </p>
               </div>
             </div>
 
@@ -453,10 +509,8 @@ export default function PengaturanPage() {
               Logout
             </button>
           </div>
-
         </div>
       </main>
-
     </div>
   );
 }
