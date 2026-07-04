@@ -109,7 +109,7 @@ export default function PengingatPage() {
           {/* Navigasi */}
           <nav className="space-y-1">
             {[
-              { name: "Dasbor", icon: LayoutDashboard, href: "/dashboard" },
+              { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
               { name: "Tugas", icon: BookOpen, href: "/tugas" },
               { name: "Kalender", icon: Calendar, href: "/kalender" },
               { name: "Pengingat", icon: Bell, href: "/pengingat" },
@@ -179,11 +179,13 @@ export default function PengingatPage() {
           </div>
 
           <div className="flex items-center gap-5">
-            <Bell className="text-gray-600" />
 
-            <div className="w-11 h-11 rounded-full bg-linear-to-r from-pink-500 to-purple-500 text-white flex items-center justify-center font-semibold">
+            <Link
+              href="/pengaturan"
+              className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer"
+            >
               AR
-            </div>
+            </Link>
           </div>
         </div>
 

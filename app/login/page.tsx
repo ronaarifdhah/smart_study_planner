@@ -2,8 +2,22 @@
 
 import { GraduationCap } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = () => {
+    if (!email || !password) {
+      alert("Email dan Password harus diisi!");
+      return;
+    }
+
+    router.push("/dashboard");
+  };
+
   return (
     <div
       style={{
@@ -24,13 +38,15 @@ export default function LoginPage() {
         }}
       >
         <div className="flex items-center gap-5 mb-8 pl-2">
-            <div className="w-15 h-15 bg-indigo-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-200">
-              <GraduationCap className="w-10 h-10" />
-            </div>
-            <div>
-              <h1 className="font-bold text-white leading-tight text-5xl">Smart Study Planner</h1>
-            </div>
+          <div className="w-15 h-15 bg-indigo-500 rounded-xl flex items-center justify-center text-white shadow-md shadow-indigo-200">
+            <GraduationCap className="w-10 h-10" />
           </div>
+          <div>
+            <h1 className="font-bold text-white leading-tight text-5xl">
+              Smart Study Planner
+            </h1>
+          </div>
+        </div>
 
         <p
           style={{
@@ -38,8 +54,7 @@ export default function LoginPage() {
             marginTop: "10px",
             fontSize: "20px",
           }}
-        >
-        </p>
+        ></p>
 
         <h1
           style={{
@@ -58,7 +73,9 @@ export default function LoginPage() {
             lineHeight: "35px",
           }}
         >
-          Wujudkan kebiasaan belajar yang lebih baik bersama Smart Study Planner dengan mengatur jadwal, mencatat tugas, dan mencapai target belajarmu secara lebih terstruktur
+          Wujudkan kebiasaan belajar yang lebih baik bersama Smart Study Planner
+          dengan mengatur jadwal, mencatat tugas, dan mencapai target belajarmu
+          secara lebih terstruktur
         </p>
       </div>
 
@@ -80,12 +97,13 @@ export default function LoginPage() {
             boxShadow: "0px 0px 25px rgba(168,85,247,0.5)",
           }}
         >
-
           <p style={{ color: "white" }}>Email</p>
 
           <input
             type="email"
             placeholder="Masukkan email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             style={{
               width: "100%",
               padding: "18px",
@@ -103,6 +121,8 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Masukkan password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             style={{
               width: "100%",
               padding: "18px",
@@ -115,14 +135,14 @@ export default function LoginPage() {
           />
 
           <button
+            onClick={handleLogin}
             style={{
               width: "100%",
               marginTop: "30px",
               padding: "18px",
               border: "none",
               borderRadius: "20px",
-              background:
-                "linear-gradient(90deg,#A855F7,#60A5FA)",
+              background: "linear-gradient(90deg,#A855F7,#60A5FA)",
               color: "white",
               fontSize: "18px",
               cursor: "pointer",
@@ -139,7 +159,6 @@ export default function LoginPage() {
             }}
           >
             Belum punya akun?
-
             <Link
               href="/signup"
               style={{
@@ -147,7 +166,8 @@ export default function LoginPage() {
                 textDecoration: "none",
               }}
             >
-              {" "}Daftar
+              {" "}
+              Daftar
             </Link>
           </p>
         </div>

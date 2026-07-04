@@ -138,7 +138,7 @@ export default function DasborPage() {
     <div className="flex min-h-screen bg-[#F8F9FD] text-slate-700 font-sans antialiased">
       {/* ================= SIDEBAR KIRI ================= */}
       <aside
-          className="
+        className="
           w-64
           bg-white
           border-r
@@ -151,7 +151,7 @@ export default function DasborPage() {
           top-0
           h-screen
         "
-        >
+      >
         <div>
           {/* Logo */}
           <div className="flex items-center gap-3 mb-8 pl-2">
@@ -198,7 +198,7 @@ export default function DasborPage() {
         </div>
 
         {/* Kotak Tips Cerdas Samping */}
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
+        <div className="bg-linear-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-purple-600 text-xs font-bold">
               💡 Tips Cerdas
@@ -224,13 +224,18 @@ export default function DasborPage() {
           </div>
 
           <div className="flex items-center gap-4 justify-end">
-            <div className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 cursor-pointer">
+            <Link
+              href="/pengingat"
+              className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 hover:text-purple-600 transition-all cursor-pointer">
               <Bell className="w-4 h-4" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full"></span>
-            </div>
-            <div className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer">
+            </Link>
+            <Link
+              href="/pengaturan"
+              className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer"
+            >
               AR
-            </div>
+            </Link>
           </div>
         </header>
 
@@ -244,13 +249,6 @@ export default function DasborPage() {
               Siap belajar dengan tenang hari ini?
             </h2>
           </div>
-          <button
-            onClick={handleTambahTugas}
-            className="flex items-center justify-center gap-2 bg-[#6366F1] hover:bg-indigo-600 text-white font-medium text-xs px-4 py-2.5 rounded-xl shadow-md shadow-indigo-100 self-start sm:self-center transition-all active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            Tugas Baru
-          </button>
         </div>
 
         {/* 4 KOTAK RINGKASAN METRIK (ATAS) */}
@@ -405,7 +403,7 @@ export default function DasborPage() {
                       className="flex flex-col items-center gap-2 flex-1"
                     >
                       <div
-                        className={`w-6 ${bar.h} bg-gradient-to-t from-sky-400 to-purple-400 rounded-md`}
+                        className={`w-6 ${bar.h} bg-linear-to-t from-sky-400 to-purple-400 rounded-md`}
                       ></div>
                       <span className="text-[10px] text-slate-400">
                         {bar.hari}
@@ -455,7 +453,7 @@ export default function DasborPage() {
           {/* ================= KOLOM KANAN (RAMPING) ================= */}
           <div className="space-y-6">
             {/* Ringkasan Produktivitas */}
-            <div className="bg-gradient-to-br from-indigo-400 to-sky-400 text-white p-5 rounded-3xl shadow-md">
+            <div className="bg-linear-to-br from-indigo-400 to-sky-400 text-white p-5 rounded-3xl shadow-md">
               <p className="text-[11px] font-medium opacity-90">
                 Ringkasan Produktivitas
               </p>
@@ -553,7 +551,7 @@ export default function DasborPage() {
             </div>
 
             {/* Pengingat Cerdas */}
-            <div className="bg-gradient-to-br from-rose-50 to-amber-50 p-4 rounded-2xl border border-rose-100/50 flex items-start gap-2.5">
+            <div className="bg-linear-to-br from-rose-50 to-amber-50 p-4 rounded-2xl border border-rose-100/50 flex items-start gap-2.5">
               <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
               <div>
                 <h5 className="text-[11px] font-bold text-rose-700 flex items-center gap-1">

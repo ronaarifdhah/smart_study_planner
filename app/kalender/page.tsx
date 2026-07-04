@@ -243,7 +243,7 @@ export default function SmartStudyPage() {
     <div className="flex min-h-screen bg-[#F8F9FD] text-slate-700 font-sans antialiased">
       {/* ================= SIDEBAR KIRI ================= */}
       <aside
-          className="
+        className="
           w-64
           bg-white
           border-r
@@ -256,7 +256,7 @@ export default function SmartStudyPage() {
           top-0
           h-screen
         "
-        >
+      >
         <div>
           {/* Logo */}
           <div className="flex items-center gap-3 mb-8 pl-2">
@@ -303,7 +303,7 @@ export default function SmartStudyPage() {
         </div>
 
         {/* Tips Box */}
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
+        <div className="bg-linear-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-purple-600 text-xs font-bold">
               💡 Tips Cerdas
@@ -333,13 +333,18 @@ export default function SmartStudyPage() {
 
           {/* Aksi Kanan */}
           <div className="flex items-center gap-4 justify-end">
-            <div className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 cursor-pointer">
+            <Link
+              href="/pengingat"
+              className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 hover:text-purple-600 transition-all cursor-pointer">
               <Bell className="w-4 h-4" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full"></span>
-            </div>
-            <div className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer">
+            </Link>
+            <Link
+              href="/pengaturan"
+              className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer"
+            >
               AR
-            </div>
+            </Link>
           </div>
         </header>
 
@@ -519,8 +524,8 @@ export default function SmartStudyPage() {
           {/* ================= KOLOM KANAN ================= */}
           <div className="space-y-6">
             {/* Kartu Statistik Bulan yang Sedang Dilihat */}
-            <div className="bg-gradient-to-br from-sky-400 to-indigo-500 text-white p-6 rounded-3xl shadow-xl shadow-indigo-100 relative overflow-hidden">
-              <div className="absolute right-[-20px] top-[-20px] w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+            <div className="bg-linear-to-br from-sky-400 to-indigo-500 text-white p-6 rounded-3xl shadow-xl shadow-indigo-100 relative overflow-hidden">
+              <div className="absolute -right-5 -top-5 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
               <p className="text-xs text-white/80 font-medium">Bulan Ini</p>
               <h3 className="text-2xl font-bold mt-1">
                 {monthNames[currentMonth]}
@@ -559,7 +564,7 @@ export default function SmartStudyPage() {
                         key={event.id}
                         className="flex gap-4 items-start p-1"
                       >
-                        <div className="bg-slate-50 border border-slate-100 rounded-xl px-2.5 py-1.5 text-center min-w-[48px]">
+                        <div className="bg-slate-50 border border-slate-100 rounded-xl px-2.5 py-1.5 text-center min-w-12">
                           <p className="text-[9px] uppercase text-slate-400 font-bold">
                             {monthNames[event.month].substring(0, 3)}
                           </p>
@@ -589,7 +594,7 @@ export default function SmartStudyPage() {
 
             {/* Legenda */}
             <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-              <h3 className="font-bold text-slate-800 text-xs mb-3 text-slate-400 uppercase tracking-wider">
+              <h3 className="font-bold text-slate-800 text-xs mb-3 uppercase tracking-wider">
                 Legenda
               </h3>
               <div className="space-y-2.5 text-xs font-medium text-slate-600">

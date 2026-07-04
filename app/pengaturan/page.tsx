@@ -85,11 +85,23 @@ export default function PengaturanPage() {
     if (yakin) alert("Sesi diakhiri. Kembali ke halaman login.");
   };
 
+  const getInitials = (name: string) => {
+    if (!name.trim()) return "?";
+
+    return name
+      .trim()
+      .split(/[\s_]+/) // pisah spasi atau underscore
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
     <div className="flex min-h-screen bg-[#F8F9FD] text-slate-700 font-sans antialiased">
       {/* ================= SIDEBAR KIRI ================= */}
       <aside
-          className="
+        className="
           w-64
           bg-white
           border-r
@@ -102,7 +114,7 @@ export default function PengaturanPage() {
           top-0
           h-screen
         "
-        >
+      >
         <div>
           {/* Logo */}
           <div className="flex items-center gap-3 mb-8 pl-2">
@@ -149,7 +161,7 @@ export default function PengaturanPage() {
         </div>
 
         {/* Tips Box */}
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
+        <div className="bg-linear-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border border-indigo-100/50">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-purple-600 text-xs font-bold">
               💡 Tips Cerdas
@@ -175,13 +187,24 @@ export default function PengaturanPage() {
           </div>
 
           <div className="flex items-center gap-4 justify-end">
-            <div className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 cursor-pointer">
+            <Link
+              href="/pengingat"
+              className="relative p-2.5 bg-white rounded-full border border-slate-100 text-slate-500 hover:bg-slate-50 hover:text-purple-600 transition-all cursor-pointer"
+            >
               <Bell className="w-4 h-4" />
               <span className="absolute top-2 right-2 w-2 h-2 bg-rose-500 rounded-full"></span>
-            </div>
-            <div className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer">
-              AR
-            </div>
+            </Link>
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt="Avatar"
+                className="w-10 h-10 rounded-full object-cover cursor-pointer"
+              />
+            ) : (
+              <div className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer">
+                {getInitials(username)}
+              </div>
+            )}
           </div>
         </header>
 
@@ -229,8 +252,8 @@ export default function PengaturanPage() {
                       className="w-16 h-16 rounded-full object-cover border border-slate-200"
                     />
                   ) : (
-                    <div className="w-16 h-16 bg-gradient-to-tr from-pink-400 to-purple-500 text-white font-bold rounded-full flex items-center justify-center text-lg shadow-inner">
-                      AR
+                    <div className="w-16 h-16 bg-linear-to-tr from-pink-400 to-purple-500 text-white font-bold rounded-full flex items-center justify-center text-lg shadow-inner">
+                      {getInitials(username)}
                     </div>
                   )}
                   {/* Tombol Input File tersembunyi */}
@@ -500,14 +523,15 @@ export default function PengaturanPage() {
               </div>
             </div>
 
-            <button
+            <Link
+              href="/login"
               type="button"
               onClick={handleLogout}
               className="w-full sm:w-auto bg-[#F43F5E] hover:bg-rose-600 text-white font-semibold text-xs px-5 py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-sm shadow-rose-100 transition-all transform active:scale-95"
             >
               <LogOut className="w-3.5 h-3.5" />
               Logout
-            </button>
+            </Link>
           </div>
         </div>
       </main>
