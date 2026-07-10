@@ -24,9 +24,19 @@ import {
 export default function PengingatPage() {
   const [hovered, setHovered] = useState<number | null>(null);
 
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const [editingId, setEditingId] = useState<number | null>(null);
+
+  const [editReminder, setEditReminder] = useState({
+    category: "",
+    title: "",
+    date: "",
+  });
+
   const [activeMenu, setActiveMenu] = useState("Pengingat");
 
-  const reminders = [
+  const [reminders, setReminders] = useState([
     {
       id: 1,
       category: "Pengingat Tugas",
@@ -51,7 +61,7 @@ export default function PengingatPage() {
       icon: <Clock3 size={18} />,
       color: "bg-blue-100 text-blue-600",
     },
-  ];
+  ]);
 
   const history = [
     {
@@ -73,6 +83,40 @@ export default function PengingatPage() {
       color: "bg-pink-100 text-pink-600",
     },
   ];
+
+  const deleteReminder = (id: number) => {
+    const confirmDelete = window.confirm(
+      "Yakin ingin menghapus pengingat ini?",
+    );
+
+    if (!confirmDelete) return;
+
+    setReminders(reminders.filter((item) => item.id !== id));
+  };
+
+  const saveReminder = () => {
+    setReminders(
+      reminders.map((item) =>
+        item.id === editingId
+          ? {
+              ...item,
+              category: editReminder.category,
+              title: editReminder.title,
+              date: editReminder.date,
+            }
+          : item,
+      ),
+    );
+
+    setShowEditModal(false);
+    setEditingId(null);
+
+    setEditReminder({
+      category: "",
+      title: "",
+      date: "",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#f6f8ff] flex">
@@ -179,7 +223,6 @@ export default function PengingatPage() {
           </div>
 
           <div className="flex items-center gap-5">
-
             <Link
               href="/pengaturan"
               className="w-10 h-10 bg-pink-400 text-white font-bold rounded-full flex items-center justify-center text-sm shadow-sm cursor-pointer"
@@ -261,6 +304,17 @@ export default function PengingatPage() {
                     `}
                   >
                     <button
+                      onClick={() => {
+                        setEditingId(item.id);
+
+                        setEditReminder({
+                          category: item.category,
+                          title: item.title,
+                          date: item.date,
+                        });
+
+                        setShowEditModal(true);
+                      }}
                       className="
                         w-10
                         h-10
@@ -278,6 +332,7 @@ export default function PengingatPage() {
                     </button>
 
                     <button
+                      onClick={() => deleteReminder(item.id)}
                       className="
                         w-10
                         h-10
@@ -333,6 +388,90 @@ export default function PengingatPage() {
           </aside>
         </div>
       </main>
+
+      {showEditModal && (
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="w-full max-w-xl bg-white rounded-3xl p-8 shadow-2xl">
+            <h2 className="text-2xl font-bold text-slate-900 mb-2">
+              Edit Pengingat
+            </h2>
+
+            <p className="text-sm text-slate-500 mb-6">
+              Ubah informasi pengingat.
+            </p>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Kategori
+              </label>
+
+              <input
+                type="text"
+                value={editReminder.category}
+                onChange={(e) =>
+                  setEditReminder({
+                    ...editReminder,
+                    category: e.target.value,
+                  })
+                }
+                className="w-full border border-slate-200 rounded-xl px-4 py-3 text-black"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Judul
+              </label>
+
+              <input
+                type="text"
+                value={editReminder.title}
+                onChange={(e) =>
+                  setEditReminder({
+                    ...editReminder,
+                    title: e.target.value,
+                  })
+                }
+                className="w-full border border-slate-200 rounded-xl px-4 py-3 text-black"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
+                Tanggal
+              </label>
+
+              <input
+                type="text"
+                value={editReminder.date}
+                onChange={(e) =>
+                  setEditReminder({
+                    ...editReminder,
+                    date: e.target.value,
+                  })
+                }
+                className="w-full border border-slate-200 rounded-xl px-4 py-3 text-black"
+              />
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setShowEditModal(false)}
+                className="px-5 py-3 rounded-xl bg-slate-100 text-slate-600"
+              >
+                Batal
+              </button>
+
+              <button
+                onClick={saveReminder}
+                className="px-6 py-3 rounded-xl text-white bg-linear-to-r from-purple-600 to-cyan-500"
+              >
+                Simpan Perubahan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
